@@ -23,7 +23,48 @@ Für die Erstellung von dynamischen TEM-Codes sind Apps für Smartphone oder Tab
 
 Zum Lesen und Verarbeiten der TEM-Codes benötigt die Einsatzleitung eine App oder ein Lageführungssystem, dass das Auslesen und Verarbeiten von TEM Codes unterstützt. Eine Liste der aktuell verfügbaren Produkte ist im Anhang zu finden.
 
+# Datenstruktur
 
+Die Datenstruktur kann dem [JSON Schema](tem-code.schema.json) entnommen werden. Alle dort enthaltenen Felder sind - bis auf den Rufnamen - optional. Je mehr Felder gefüllt werden, um so mehr Daten stehen der Eisnatzleitung im Einsatzfall für den taktisch sinnvollen Einsatz des Einsatzmittels zur Verfügung.
+
+## Technischer Ablauf für die Kodierung
+
+Um einen TEM-Code zu erzeugen, sind die folgenden Schritte notwendig.
+
+1. Erstellen des JSON Objektes gemäß der [JSON Schema Definition](tem-code.schema.json)
+2. Umwandeln des JSON Objektes in seine Binärform mit Hilfe der ["Concise Binary Object Representation"](https://cbor.io/) nach [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949)
+3. Komprimieren der binären Daten mit Hilfe des Deflate Algorithmus nach [RFC 1951](https://datatracker.ietf.org/doc/html/rfc1951). Dazu kann z.B. die Zlib Bibliothek verwendet werden, die in vielen Programmiersprachen verfügbar ist.
+4. Die komprimierten Daten werden schließlich Base45 kodiert, um die Kapazität des QR Codes optimal nutzen zu können. [RFC 9285](https://datatracker.ietf.org/doc/rfc9285/)
+5. Erstellung des QR Codes mit dem Base45 Text mit einer beliebigen Bibliothek zur QR Code Generierung
+
+```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
+flowchart LR
+    json["Create JSON"]
+    cbor["CBOR Encoding"]
+    zlib["ZLIB Compression"]
+    base45["Base45 Encoding"]
+    qr["Generate QR Code"]
+    json --> cbor --> zlib --> base45 --> qr
+```
+
+## Technischer Ablauf für die Dekodierung
+
+Für die Dekodierung des QR Codes, wird der gleiche Ablauf, wie unter [Kodierung](#technischer-ablauf-für-die-kodierung) beschrieben, allerdings in umgekehrter Reihenfolge mit den jeweiligen Umkehrfunktionen durchgeführt.
+
+```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
+flowchart LR
+    json["JSON Object"]
+    cbor["CBOR Decoding"]
+    zlib["ZLIB Decompression"]
+    base45["Base45 Decoding"]
+    qr["Read QR Code"]
+    qr --> base45 --> zlib --> cbor --> json 
+```
+## Referenzimplementierung
+
+Eien Referenzimplementierung mittels JavaScript/TypeScript wird in Kürze hier verfügbar sein.
 
 
 # Produkte mit TEM-Code Unterstützung
