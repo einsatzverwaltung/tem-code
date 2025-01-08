@@ -20,7 +20,7 @@
     },
     "rfnm": {
       "type": "string",
-      "description": "Rufname des Fahrzeuges in ausgeschriebener Form, sodass der Rufname durch den Anwender vollständig ausgesprochen werden kann. Kürzel sollten vermieden werden.",
+      "description": "Rufname des Fahrzeuges in ausgeschriebener Form, sodass der Rufname durch den Anwender vollständig ausgesprochen werden kann. Kürzel sollten vermieden werden."
     },
     "kurz": {
       "type": "string",
@@ -94,7 +94,7 @@
     },
     "staerke": {
       "type": "string",
-      "description": "Taktische Soll-Besatzungsstärke des Einsatzmittels getrennt mit Schrägstrichen z.B. 1/8 oder 1/3/18 oder 0/2 oder 1/3/6/50",
+      "description": "Taktische Soll-Besatzungsstärke des Einsatzmittels getrennt mit Schrägstrichen z.B. 1/8 oder 1/3/18 oder 0/2 oder 1/3/6/50"
     },
     "mail": {
       "type": "string",
@@ -198,7 +198,7 @@
         },
         "staerke": {
           "type": "string",
-          "description": "Taktische Ist-Besatzungsstärke des Einsatzmittels getrennt mit Schrägstrichen z.B. 1/8 oder 1/3/18 oder 0/2 oder 1/3/6/50",
+          "description": "Taktische Ist-Besatzungsstärke des Einsatzmittels getrennt mit Schrägstrichen z.B. 1/8 oder 1/3/18 oder 0/2 oder 1/3/6/50"
         }
       },
       "required": []
