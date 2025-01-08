@@ -1,7 +1,7 @@
 {
-  "$id": "https://example.com/health-record.schema.json",
+  "$id": "https://github.com/einsatzverwaltung/tem-code/edit/main/tem-code.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Schema for representing a health record",
+  "description": "Schema für den Taktischen Einsatzmittel Code",
   "type": "object",
   "required": [
     "rfnm"
