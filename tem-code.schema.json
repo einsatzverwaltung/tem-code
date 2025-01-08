@@ -1,0 +1,207 @@
+{
+  "$id": "https://example.com/health-record.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Schema for representing a health record",
+  "type": "object",
+  "required": [
+    "rfnm"
+  ],
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Eine eindeutige UUID. Diese sollte einmalig pro Fahrzeug durch die Organisation erzeugt und anschließend für das gleiche Fahrzeug immer wieder verwendet werden. Die gleiche UUID darf nicht für mehrere Fahrzeuge genutzt werden."
+    },
+    "opta": {
+      "type": "string",
+      "description": "Operativ Taktische Adresse des Fahrzeuges gemäß Landesvorgabe. Dabei sind 23 Zeichen ausreichend, da diese das Einsatzmittel bereits eindeutig identifizieren.",
+      "minLength": 23,
+      "maxLength": 24
+    },
+    "rfnm": {
+      "type": "string",
+      "description": "Rufname des Fahrzeuges in ausgeschriebener Form, sodass der Rufname durch den Anwender vollständig ausgesprochen werden kann. Kürzel sollten vermieden werden.",
+    },
+    "kurz": {
+      "type": "string",
+      "description": "Rufname des Fahrzeuges als Kurzform"
+    },
+    "kfz": {
+      "type": "string",
+      "description": "KFZ Kennzeichen des Fahrzeuges"
+    },
+    "bemerkung":{
+      "type": "string",
+      "description": "Benutzerdefinierte Bemerkung zu diesem Einsatzmittel"
+    },
+    "org": {
+      "type": "object",
+      "desription": "Informationen über die Organisation, der dieses Einsatzmittel angehört",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name der Organisation"
+        },
+        "mail": {
+          "type": "string",
+          "description": "E-Mailadresse der Organisation zur Kontaktaufnahme"
+        },
+        "tel": {
+          "type": "string",
+          "description": "Telefonnummer der Organisation zur Kontaktaufnahme"
+        },
+        "adr": {
+          "type": "object",
+          "desription": "Adresse der Organisation",
+          "properties": {
+            "str": {
+              "type": "string",
+              "description": "Straße"
+            },
+            "hnr": {
+              "type": "string",
+              "description": "Hausnummer"
+            },
+            "plz": {
+              "type": "string",
+              "description": "Postleitzahl"
+            },
+            "sta": {
+              "type": "string",
+              "description": "Stadt"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },    
+    "tsi": {
+      "type": "array",
+      "description": "Digitalfunk TSI Adressen der Funkgeräte des Einsatzmittels. Die erste TSI, sollte das Hauptfunkgerät sein, um Kontakt mit dem Einsatzmittel aufnehmen zu können.",
+      "items": {
+        "type": "number"
+      }
+    },
+    "sitz": {
+      "type": "number",
+      "description": "Anzahl Sitzplätze in diesem Einsatzmittel",
+      "minimum": 0
+    },
+    "typ": {
+      "type": "string",
+      "description": "Taktischer Einsatzmitteltyp z.B. RTW, HLF, GKW, FuStW"
+    },
+    "staerke": {
+      "type": "string",
+      "description": "Taktische Soll-Besatzungsstärke des Einsatzmittels getrennt mit Schrägstrichen z.B. 1/8 oder 1/3/18 oder 0/2 oder 1/3/6/50",
+    },
+    "mail": {
+      "type": "string",
+      "description": "E-Mailadresse des Einsatzmittels, nur angeben, wenn das Einsatzmittel direkt darüber erreicht werden kann"
+    },
+    "tel": {
+      "type": "string",
+      "description": "Telefonnummer eines, dem Einsatzmittel zugehörigen, (Mobil)telefons, über das das Einsatzmittel direkt erreicht werden kann"
+    },
+    "treib": {
+      "type": "string",
+      "description": "Treibstoffart für den Fahrzeugantrieb",
+      "enum": [
+        "Diesel",
+        "Benzin",
+        "LPG",
+        "Elektro",
+        "Erdgas",
+        "Wasserstoff"
+      ]
+    },
+    "tank": {
+      "type": "object",
+      "desription": "Informationen über mitgeführte Betriebs und Löschmittel",
+      "properties": {
+        "treib": {
+          "type": "number",
+          "description": "Mitgeführte Treibstoffmenge für den Fahrzeugantrieb in der Einheit des gewählten Treibstoffes. Liter für Flüssigkeiten und LPG, kg für Erdgas und Wasserstoff, kWh für Elektro/Batterien"
+        },
+        "wass": {
+          "type": "string",
+          "description": "Löschwassermenge in Litern (0 = Kein Tank vorhanden)"
+        },
+        "schaum": {
+          "type": "string",
+          "description": "Löschmittelmenge in Litern (0 = Kein Tank vorhanden)"
+        }
+      },
+      "required": []
+    },
+    "san": {
+      "type": "object",
+      "desription": "Sanitäts- bzs. medizinische Leistungsfähigkeit des Einsatzmittels, insbesondere für den MANV Fall",
+      "properties": {
+        "tr_lg": {
+          "type": "number",
+          "description": "Transportkapazität für liegende Patienten"
+        },
+        "tr_st": {
+          "type": "number",
+          "description": "Transportkapazität für stehende Patienten"
+        },
+        "tr_si": {
+          "type": "number",
+          "description": "Transportkapazität für sitzende Patienten"
+        },
+        "vs_rt": {
+          "type": "number",
+          "description": "Versorgungskapazität für Patienten der Sichtungskategorie rot"
+        },
+        "vs_gb": {
+          "type": "number",
+          "description": "Versorgungskapazität für Patienten der Sichtungskategorie gelb"
+        },
+        "vs_gr": {
+          "type": "number",
+          "description": "Versorgungskapazität für Patienten der Sichtungskategorie grün"
+        },
+        "betr": {
+          "type": "number",
+          "description": "Betreuungskapazität (Anzahl Personen)"
+        },
+        "verp": {
+          "type": "number",
+          "description": "Verpflegungskapazität (Anzahl Personen)"
+        }
+      },
+      "required": []
+    },
+    "dyn": {
+      "type": "object",
+      "desription": "Dieser Block enthält dynamische Daten des TEM-Codes, die zum Zeitpunkt der Erzeugung des Codes ergänzt wurden. Dies sind z.B. Personaldaten.",
+      "properties": {
+        "pers": {
+          "type": "array",
+          "desription": "Aktuelle Besatzung des Einsatzmittels",
+          "items": {
+            "type": "object",
+            "desription": "Personaldaten",
+            "properties": {
+              "vorname": {
+                "type": "string",
+                "description": "Vorname der Einsatzkraft"
+              },
+              "nachname": {
+                "type": "string",
+                "description": "Nachname der Einsatzkraft"
+              }
+            }
+          }
+        },
+        "staerke": {
+          "type": "string",
+          "description": "Taktische Ist-Besatzungsstärke des Einsatzmittels getrennt mit Schrägstrichen z.B. 1/8 oder 1/3/18 oder 0/2 oder 1/3/6/50",
+        }
+      },
+      "required": []
+    }
+  }
+}
