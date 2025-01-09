@@ -94,7 +94,28 @@
     },
     "staerke": {
       "type": "string",
-      "description": "Taktische Soll-Besatzungsstärke des Einsatzmittels getrennt mit Schrägstrichen z.B. 1/8 oder 1/3/18 oder 0/2 oder 1/3/6/50"
+      "description": "Taktische Besatzungsstärke des Einsatzmittels",
+       "enum": [
+        "Trupp",
+        "Staffel",
+        "Gruppe",
+        "Zug",
+        "Bereitschaft",
+        "Abteilung",
+        "Großverband"
+      ]
+    },
+    "verw": {
+      "type": "string",
+      "description": "Verwaltungsstufe",
+       "enum": [
+        "Gemeinde",
+        "Kreis",
+        "Bezirk",
+        "Land",
+        "BRD",
+        "EU"
+      ]
     },
     "mail": {
       "type": "string",
