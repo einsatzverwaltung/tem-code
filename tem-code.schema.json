@@ -117,6 +117,19 @@
         "EU"
       ]
     },
+    "zuge": {
+      "type": "string",
+      "description": "Organisationszugehörigkeit",
+       "enum": [
+        "Feuerwehr",
+        "THW",
+        "Hilfsorganisation",
+        "Fuehrung",
+        "Polizei",
+        "Sonstiges",
+        "Bundeswehr"
+      ]
+    },
     "mail": {
       "type": "string",
       "description": "E-Mailadresse des Einsatzmittels, nur angeben, wenn das Einsatzmittel direkt darüber erreicht werden kann"
