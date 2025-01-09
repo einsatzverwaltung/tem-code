@@ -159,11 +159,11 @@
           "description": "Mitgeführte Treibstoffmenge für den Fahrzeugantrieb in der Einheit des gewählten Treibstoffes. Liter für Flüssigkeiten und LPG, kg für Erdgas und Wasserstoff, kWh für Elektro/Batterien"
         },
         "wass": {
-          "type": "string",
+          "type": "number",
           "description": "Löschwassermenge in Litern (0 = Kein Tank vorhanden)"
         },
         "schaum": {
-          "type": "string",
+          "type": "number",
           "description": "Löschmittelmenge in Litern (0 = Kein Tank vorhanden)"
         }
       },
